@@ -1,0 +1,12 @@
+su hduser
+start-all.sh
+jps
+hdfs dfs -put /home/hduser/Downloads/task3/data.txt /Input/
+ls /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar -file /home/hduser/Downloads/task3/mapper.py -mapper mapper.py -file /home/hduser/Downloads/task3/reducer.py -reducer reducer.py -input /Input/data.txt -output /home/hduser/Downloads/task3
+
+TOMORROW
+hdfs dfs -rm -r /home/hduser/Downloads/task3
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar -file /home/hduser/Downloads/task3/mapper.py -mapper mapper.py -file /home/hduser/Downloads/task3/reducer.py -reducer reducer.py -input /Input/data.txt -output /home/hduser/Downloads/task3
+hdfs dfs -ls /home/hduser/Downloads/task3
+hdfs dfs -cat /home/hduser/Downloads/task3/part-00000
